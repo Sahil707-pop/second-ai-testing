@@ -1,3 +1,5 @@
+```python
+
 def process_transactions(transactions):
     """
     Process transaction records and return normalized totals by user.
@@ -21,3 +23,4 @@ def process_transactions(transactions):
             totals[user_id] = totals.get(user_id, 0) + 0
 
     return totals
+```
