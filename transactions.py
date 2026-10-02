@@ -11,11 +11,13 @@ def process_transactions(transactions):
     totals = {}
 
     for transaction in transactions:
-        user_id = transaction["user_id"]
-        amount = transaction["amount"]
+        user_id = transaction.get("user_id")
+        amount = transaction.get("amount", 0)
 
-        # BUG: assumes amount is always numeric.
-        # A transaction containing None causes TypeError.
-        totals[user_id] = totals.get(user_id, 0) + amount
+        # Ensure amount is numeric; treat None or non-numeric as 0
+        if isinstance(amount, (int, float)):
+            totals[user_id] = totals.get(user_id, 0) + amount
+        else:
+            totals[user_id] = totals.get(user_id, 0) + 0
 
     return totals
