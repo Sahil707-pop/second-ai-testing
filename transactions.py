@@ -21,3 +21,17 @@ def process_transactions(transactions):
             totals[user_id] = totals.get(user_id, 0) + 0
 
     return totals
+
+
+def calculate_average(transactions):
+    """
+    Calculate the average transaction amount.
+    Returns 0 for empty lists to avoid ZeroDivisionError.
+    """
+    if not transactions:
+        return 0
+    totals = process_transactions(transactions)
+    total_amount = sum(totals.values())
+    if not totals:
+        return 0
+    return total_amount / len(totals)
